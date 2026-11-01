@@ -1,6 +1,6 @@
 {
   "name": "opencode-right-preview",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "description": "OpenCode v2 TUI plugin: right-side file launcher panel for files referenced/mentioned in the current session — click to open in your local editor",
   "license": "MIT",
@@ -22,14 +22,13 @@
     "editor",
     "diff"
   ],
-  "main": "./index.ts",
+  "main": "./dist/index.js",
   "exports": {
-    ".": "./index.ts",
-    "./tui": "./tui.tsx"
+    ".": "./dist/index.js",
+    "./tui": "./dist/tui.js"
   },
   "files": [
-    "index.ts",
-    "tui.tsx",
+    "dist",
     "README.md",
     "LICENSE"
   ],
@@ -37,6 +36,8 @@
     "node": ">=18"
   },
   "scripts": {
+    "build": "bun run scripts/build.mjs",
+    "prepublishOnly": "bun run build",
     "version:patch": "npm version patch",
     "version:minor": "npm version minor",
     "version:major": "npm version major"
@@ -47,6 +48,13 @@
   "peerDependencies": {
     "@opentui/core": ">=0.5.8",
     "@opentui/solid": ">=0.5.8",
+    "solid-js": ">=1.9.0"
+  },
+  "devDependencies": {
+    "@opencode/plugin": ">=2.0.0",
+    "@opentui/core": ">=0.5.8",
+    "@opentui/solid": ">=0.5.8",
+    "@types/node": "^22",
     "solid-js": ">=1.9.0"
   },
   "publishConfig": {

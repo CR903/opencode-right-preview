@@ -50,8 +50,20 @@ opencode plugin add github:CR903/opencode-right-preview
 
 ```bash
 git clone git@github.com:CR903/opencode-right-preview.git
+cd opencode-right-preview
+bun install
+bun run build            # 把 tui.tsx 编译为 dist/tui.js（npm 包发布的是编译后的纯 JS）
+
+# 方式 A：复制到全局插件目录
 cp -r opencode-right-preview ~/.config/opencode/plugins/opencode-right-preview
+
+# 方式 B：配置本地路径
+echo '{ "plugins": ["./path/to/opencode-right-preview"] }' > ~/.config/opencode/opencode.json
 ```
+
+> 为什么 npm 包要预编译：opencode 从 npm 加载 TUI 插件时走 `exports["./tui"]`，
+> 若指向 `.tsx`，宿主 bundler 会用默认 React JSX 转换而报 `Cannot find package 'react'`。
+> 发布前用 `@opentui/solid/bun-plugin` 把 JSX 降级为 Solid `jsx()` 调用，即可被宿主直接加载。
 
 ### 更新插件
 
