@@ -1,8 +1,8 @@
 {
   "name": "opencode-right-preview",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
-  "description": "OpenCode TUI plugin: right-side file preview panel for files referenced/mentioned in the current session",
+  "description": "OpenCode v2 TUI plugin: right-side file launcher panel for files referenced/mentioned in the current session — click to open in your local editor",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -17,8 +17,9 @@
     "opencode-plugin",
     "plugin",
     "tui",
-    "file-preview",
     "file-browser",
+    "file-launcher",
+    "editor",
     "diff"
   ],
   "main": "./index.ts",
@@ -32,6 +33,9 @@
     "README.md",
     "LICENSE"
   ],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "version:patch": "npm version patch",
     "version:minor": "npm version minor",
@@ -44,5 +48,9 @@
     "@opentui/core": ">=0.5.8",
     "@opentui/solid": ">=0.5.8",
     "solid-js": ">=1.9.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
